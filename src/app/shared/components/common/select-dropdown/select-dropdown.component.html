@@ -1,0 +1,18 @@
+<div class="select-wrap">
+    <label *ngIf="hasLabel" for="label" class="block text-sm font-medium text-gray-700 mb-2 mt-2">{{label}}</label>
+  <nz-select
+    class=""
+    nzAllowClear
+    [nzPlaceHolder]="placeholder"
+    [nzSize]="size"
+    nzShowSearch
+    class="mt-1 p-2 w-full border rounded-2xl"
+    [formControl]="control"
+    [nzDisabled]="disabled"
+    [nzServerSearch]="false"
+  >
+    <div *ngFor="let option of options">
+      <nz-option [nzLabel]="isCountryOptions ? renderCustomOption(option) : option.label" [nzValue]="option.value"></nz-option>
+    </div>
+  </nz-select>
+</div>

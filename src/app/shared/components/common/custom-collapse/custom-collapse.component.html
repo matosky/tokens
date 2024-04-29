@@ -1,0 +1,18 @@
+<div class="custom-collapse">
+  <ng-container *ngFor="let panel of panels; let i = index">
+    <div class="collapse-header" (click)="toggleCollapse(i)">
+      <div class="title">
+        <h4>{{ panel.name }}</h4>
+        <span nz-icon [nzType]="panel.active ? 'down' : 'right'" nzTheme="outline"></span>
+      </div>
+    </div>
+    <div class="collapse-content" *ngIf="panel.active">
+      <div *ngFor="let content of panel.content">
+        <p  [class.countryLink]="content.subcontent==='Country'" class="content">
+          <a (click)="handleLinkClick(content.route, content.subcontent)">{{ content.subcontent }}</a>
+          <img  *ngIf="content.subcontent==='Country'"  [src]="currentFlag" class="h-8 w-8" />
+        </p>
+      </div>
+    </div>
+  </ng-container>
+</div>

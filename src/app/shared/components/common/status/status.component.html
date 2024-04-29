@@ -1,0 +1,5 @@
+<div class="status">
+    <td [ngClass]="{'success': status==='Completed', 'pending': status==='Pending', 'failed': status==='Failed'}" [style.color]="'#20B538'" [style.text-align]="'center'">
+        {{ status }}
+    </td>
+</div>

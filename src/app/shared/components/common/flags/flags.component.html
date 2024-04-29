@@ -1,0 +1,17 @@
+<div class="flag-box">
+  <a nz-dropdown [nzDropdownMenu]="menu">
+    <div class="flag">
+      <img [src]="currentFlag"  alt="flagIcon" class="flagIcon" />
+    </div>
+    <img [src]="dropdownIcon" alt="dropIcon" class="drop-icon" />
+  </a>
+  <div class="dropdown">
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu nzSelectable *ngFor="let c of countries">
+        <li (click)="getCurrentFlag(c?.image)" nz-menu-item>
+            <img [src]="c.image" alt="flag" class="h-8 w-8" />
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+</div>

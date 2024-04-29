@@ -1,0 +1,72 @@
+@import "../../../../../../styles/base/mixins.less";
+@import "../../../../../../styles/base/variables.less";
+
+nz-sider {
+  overflow: auto;
+  height: 100%;
+  width: 256px;
+  padding: 0px 16px;
+  background-color: #fff;
+  z-index: 500;
+  border-radius: 0px 10px 0px 0px;
+  @media screen and (max-width: @medium-screen) {
+    width: 100%;
+  }
+  @media screen and (min-width: @medium-screen) {
+    display: none;
+  }
+}
+
+.logo {
+  height: 32px;
+  // .app-logo{}
+}
+.dashboard {
+  display: block;
+  margin: 30px 0 30px 0;
+  border-radius: 10px;
+  text-align: center;
+  background-color: @color-brand-gold;
+  border: 1px solid #bac;
+  .flex-center(row,flex-start,center);
+  padding: 10px 20px 10px 10px;
+
+  span {
+    display: flex;
+    column-gap: 10px;
+    color: @color-text-secondary;
+    .dashboard-icon {
+      fill: #000000;
+    }
+  }
+}
+
+.sidebar-section {
+  margin-bottom: 40px;
+
+  h3 {
+    .App-link-header();
+  }
+  li {
+    list-style-type: none;
+    margin: 0.8rem 0;
+   .flex-center(row,space-between,center);
+    .item {
+      display: flex;
+      column-gap: 5px;
+      color: @color-text-link;
+      .App-link();
+      &:hover {
+        color: @color-brand-gold;
+      }
+    }
+
+    .item.active{
+      color: @color-brand-gold;
+    }
+
+    .icon {
+      margin-right: 10px;
+    }
+  }
+}

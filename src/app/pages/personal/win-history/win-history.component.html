@@ -1,0 +1,263 @@
+<app-page-wrap>
+  <div class="win-container">
+    <section class="card-section">
+      <app-card [borderColor]="'1px solid #B1A9A9'">
+        <div class="card-content">
+          <div class="left">
+            <img [src]="cardData.icon" [alt]="cardData.label" />
+            <div class="win-balance">
+              <div class="amount-display">
+                <h4>
+                  {{ cardData.amount | currency : "₦" }}
+                </h4>
+                <!-- <div class="asteriks" *ngIf="!isVisibleEye">****</div> -->
+              </div>
+              <!-- <div class="togglers">
+                <span
+                  class="eyeIcon"
+                  (click)="toggleWalletBallance()"
+                  *ngIf="isVisibleEye"
+                  nz-icon
+                  nzType="eye-invisible"
+                  nzTheme="outline"
+                ></span>
+                <span
+                  class="eyeIcon"
+                  (click)="toggleWalletBallance()"
+                  *ngIf="!isVisibleEye"
+                  nz-icon
+                  nzType="eye"
+                  nzTheme="outline"
+                ></span>
+              </div> -->
+            </div>
+            <h6>{{ cardData.label }}</h6>
+          </div>
+          <div class="giftlog-app-logo">
+            <img src="assets/svg/menu/logo.svg" alt="icon" />
+          </div>
+        </div>
+      </app-card>
+    </section>
+  
+    <!-- ...............win forms............ -->
+   <section class="form-section">
+    <h2>Filter Win History</h2>
+    <form
+    (ngSubmit)="onSubmitFilterForm()"
+    [formGroup]="filterForm"
+    class="form"
+  >
+    <div class="form-wrap">
+      <div class="form-item">
+        <app-input
+          formControlName="quantityGifted"
+          [type]="'number'"
+          [label]="'Quantity Gifted'"
+        ></app-input>
+      </div>
+      <div class="form-item">
+        <app-input
+          formControlName="reference"
+          [type]="'text'"
+          [label]="'Reference'"
+        ></app-input>
+      </div>
+
+      <div class="form-item">
+        <app-select-dropdown
+          [label]="'Status'"
+          formControlName="status"
+          [size]="'large'"
+          [options]="optionsArray"
+        ></app-select-dropdown>
+      </div>
+
+      <div class="form-item">
+        <app-input
+          formControlName="recipient"
+          [type]="'text'"
+          [label]="'Recipient'"
+        ></app-input>
+      </div>
+      <div class="form-item">
+        <app-date-picker
+          [placeholder]="'.'"
+          [label]="'Start Date'"
+          formControlName="startDate"
+        ></app-date-picker>
+      </div>
+      <div class="form-item">
+        <app-date-picker
+          [placeholder]="'.'"
+          [label]="'End Date'"
+          formControlName="endDate"
+        ></app-date-picker>
+      </div>
+    </div>
+    <div class="btn-wrapper">
+      <primary-button
+        [text]="'Click to filter'"
+        type="submit"
+      ></primary-button>
+      <primary-button
+        [text]="'Download CSV'"
+        type="submit"
+      ></primary-button>
+    </div>
+  </form>
+   </section>
+  
+    <!-- -------Only shows on large screens...... -->
+    <div class="desktop-table">
+      <app-table
+        [showPagination]="true"
+        [bodyBackground]="'#FFF'"
+        [tableHeaders]="headers"
+        [tableData]="personData"
+        [loading]="loading"
+      >
+        <tr *ngFor="let row of personData; let i = index">
+          <td
+            [ngStyle]="{ 'border-bottom-color': '#B1A9A9', 'text-align': 'left' }"
+          >
+            <div class="flex-table-data">
+              <div [ngClass]="{'status-circle': true, 'completed': row.status === 'completed', 'pending': row.status === 'pending', 'failed': row.status === 'failed'}"></div>
+              <div class="status-text">
+                <span>
+                {{ row.status | capitalize }}
+                </span>
+              </div>
+            </div>
+          </td>
+          <td
+            [ngStyle]="{ 'border-bottom-color': '#B1A9A9' }"
+            [style.text-align]="'center'"
+          >
+            {{ row.reference | truncate : 10 }}
+          </td>
+          <td
+            [ngStyle]="{ 'border-bottom-color': '#B1A9A9' }"
+            [style.text-align]="'center'"
+          >
+            {{ row.amount }}
+          </td>
+          <td
+            [ngStyle]="{ 'border-bottom-color': '#B1A9A9' }"
+            [style.text-align]="'center'"
+          >
+            {{ row.destination | truncate : 10 }}
+          </td>
+          <td
+            [ngStyle]="{ 'border-bottom-color': '#B1A9A9' }"
+            [style.text-align]="'center'"
+          >
+            {{ row.createdAt | truncate : 10 }}
+          </td>
+          <td
+            [ngStyle]="{ 'border-bottom-color': '#B1A9A9' }"
+            [style.text-align]="'center'"
+            [style.cursor]="'pointer'"
+          >
+            <div class="table-action">
+              <img (click)="showMoreModal(row.id)" [src]="eyeIcon" alt="icon" />
+            </div>
+          </td>
+        </tr>
+      </app-table>
+      <nz-pagination
+        style="display: flex; justify-content: end; margin-top: 10px"
+        [(nzPageIndex)]="currentPage"
+        [nzPageIndex]="currentPage"
+        [nzPageSize]="pageSize"
+        [nzTotal]="totalPages * pageSize"
+        [nzPageSize]="pageSize"
+        nzShowSizeChanger
+        [nzResponsive]="false"
+        [nzHideOnSinglePage]="false"
+        (nzPageSizeChange)="onPageSizeChange($event)"
+        (nzPageIndexChange)="onPageChange($event)"
+      >
+      </nz-pagination>
+    </div>
+  
+    <!-- -------Only shows on small screens...... -->
+    <div class="mobile-table">
+      <app-table
+        [bodyBackground]="'#FFF'"
+        [showPagination]="true"
+        [tableHeaders]="mobileHeaders"
+        [tableData]="personData"
+        [nzLoading]="loading"
+      >
+        <tr *ngFor="let row of personData; let i = index">
+          <td
+            [ngStyle]="{ 'border-bottom-color': '#B1A9A9' }"
+            [style.text-align]="'center'"
+          >
+          <div class="flex-table-data">
+            <div
+              [ngClass]="{
+                'status-circle': true,
+                completed: row.status === 'completed',
+                pending: row.status === 'pending',
+                failed: row.status === 'failed'
+              }"
+            ></div>
+            <div class="status-text">
+              <span class="hidden-status-text">
+                {{ row.status | capitalize }}
+              </span>
+            </div>
+          </div>
+          </td>
+          <td
+            [ngStyle]="{ 'border-bottom-color': '#B1A9A9' }"
+            [style.text-align]="'center'"
+          >
+            {{ row.amount }}
+          </td>
+          <td
+            [ngStyle]="{ 'border-bottom-color': '#B1A9A9' }"
+            [style.text-align]="'center'"
+            [style.cursor]="'pointer'"
+          >
+            <div class="table-action">
+              <img (click)="showMoreModal(row.id)" [src]="eyeIcon" alt="icon" />
+            </div>
+          </td>
+        </tr>
+      </app-table>
+      <nz-pagination
+        style="display: flex; justify-content: end; margin-top: 10px"
+        [(nzPageIndex)]="currentPage"
+        [nzPageIndex]="currentPage"
+        [nzPageSize]="pageSize"
+        [nzTotal]="totalPages * pageSize"
+        [nzPageSize]="pageSize"
+        nzShowSizeChanger
+        [nzResponsive]="false"
+        [nzHideOnSinglePage]="false"
+        (nzPageSizeChange)="onPageSizeChange($event)"
+        (nzPageIndexChange)="onPageChange($event)"
+      >
+      </nz-pagination>
+    </div>
+  </div>
+  
+  <nz-modal
+    class="container"
+    [(nzVisible)]="isViewMore"
+    nzTitle="Gifting History"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+    [nzZIndex]="1000"
+    [nzCentered]="true"
+  >
+    <ng-container *nzModalContent>
+      <p>Date: {{ modalData?.date }}</p>
+      <p>Customer: {{ modalData?.destination }}</p>
+      <p>Quantity: {{ modalData?.reference }}</p>
+    </ng-container>
+  </nz-modal>
+</app-page-wrap>

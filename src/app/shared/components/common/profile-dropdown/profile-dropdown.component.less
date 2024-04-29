@@ -1,0 +1,42 @@
+@import "../../../../../styles/base/variables.less";
+@import "../../../../../styles/base/mixins.less";
+
+
+.drop-down-wrap{
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  cursor: pointer;
+  position: relative;
+
+  .popup {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 400px;
+    height: 300px;
+    z-index: 1;
+  }
+}
+
+
+.item{
+    font-size: 0.875rem;
+    font-weight: 400;
+    display: flex;
+    cursor: pointer;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+    color: @color-text-link;
+    .App-link();
+    &:hover {
+      color: @color-brand-gold;
+    }
+
+    &:hover{
+        background-color: #eee;
+    }
+}

@@ -1,0 +1,243 @@
+@import "../../../../styles/base/mixins.less";
+@import "../../../../styles/base/variables.less";
+
+.win-container {
+  width: 100%;
+  padding: 30px 0;
+}
+
+.card-section {
+  max-width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  @media screen and (max-width: @medium-screen) {
+    max-width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.card-content {
+  padding: 20px;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .left {
+    .flex-center(column, space-between, flex-start);
+    gap: 10px;
+  }
+  .win-balance {
+    height: 40px;
+    .flex-center(row, space-between, center);
+    gap: 5px;
+    & h4 {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      white-space: nowrap;
+      @media screen and (max-width: 768px) {
+        font-size: 1rem;
+      }
+    }
+    .amount-display {
+      text-align: center .flex-center(row, space-between, center);
+      .asteriks {
+        font-size: 32px;
+        padding-top: 20px;
+      }
+    }
+    .togglers {
+      margin-left: 20px;
+      .flex-center(row, space-between, center);
+    }
+    & .eyeIcon {
+      cursor: pointer;
+      color: @color-brand-gold;
+      font-size: 1.5rem;
+    }
+  }
+  h6 {
+    font-size: 1rem;
+    white-space: nowrap;
+    @media screen and (max-width: 1106px) {
+      font-weight: 400;
+    }
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media screen and (max-width: 1106px) {
+    transform: scale(1.05);
+  }
+
+  @media screen and (max-width: @small-screen) {
+    transform: scale(1);
+    padding: 10px;
+  }
+
+  .giftlog-app-logo {
+    display: flex;
+    justify-content: right;
+    height: 100%;
+    & img {
+      width: 35px;
+      height: 35px;
+      object-fit: cover;
+    }
+  }
+}
+
+.form-section {
+  margin: 40px 0;
+  & h2 {
+    .Title-Text();
+  }
+}
+
+.form {
+  padding: 20px;
+  border-radius: 5px;
+  .flex-center(column, flex-start, flex-end);
+  background-color: @color-light;
+  @media screen and (max-width: @small-screen) {
+    padding: 10px;
+  }
+}
+
+.form-wrap {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 10px;
+  column-gap: 10px;
+  @media screen and (max-width: @medium-screen) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 210px;
+  gap: 0.7rem;
+}
+
+.desktop-table {
+  @media screen and (max-width: @medium-screen) {
+    display: none;
+  }
+
+  .flex-table-data {
+    display: flex;
+    align-items: bottom;
+    position: relative;
+  }
+}
+
+.mobile-table {
+  display: none;
+  @media screen and (max-width: @medium-screen) {
+    display: block;
+  }
+  .flex-table-data {
+    display: flex;
+    align-items: bottom;
+    position: relative;
+  }
+}
+
+.status-circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #20b538;
+  margin-right: 10px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.completed {
+  background-color: #20b538;
+}
+
+.pending {
+  background-color: orange;
+}
+
+.failed {
+  background-color: red;
+}
+.status-text {
+  margin-left: 20px;
+}
+
+.table-action {
+  width: 100%;
+  .flex-center(row, center, center);
+
+  & img {
+    @media screen and (max-width: @medium-screen) {
+      width: 15px;
+      height: 15px;
+      object-fit: cover;
+    }
+  }
+}
+
+// ---------Modal--------
+
+.modal-header {
+  width: 100%;
+  margin-bottom: 1rem;
+  .flex-center(row, space-between, center);
+  .modal-title {
+    .modalTitle;
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.field-wrap {
+  width: 100% .flex-center(column, center, center);
+  gap: 10px;
+}
+
+.field-button {
+  width: fit-content;
+  margin: 0 auto;
+  & button {
+    margin-top: 10px;
+  }
+}
+
+.info-text-wrap {
+  .flex-center(row, space-between, center);
+  margin-bottom: 10px;
+
+  & h6 {
+    .modaltext();
+  }
+  & p {
+    .modalSubtext();
+  }
+}
+
+.success-modal-wrap {
+  .flex-center(column, center, center);
+  gap: 20px;
+  & p {
+    .paragraph-text();
+  }
+
+  & img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+  }
+}

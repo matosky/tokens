@@ -1,0 +1,175 @@
+<app-page-wrap>
+  <div class="container">
+    <div class="support_title">
+      <div class="support_content">
+        <h1>Get in touch</h1>
+        <p class="sub-title">Select how you would like to contact us</p>
+      </div>
+    </div>
+  
+    <div>
+      <div class="card">
+        <div
+          class="card-ref"
+          *ngFor="let card of cardData"
+          (click)="onClickCard(card.id)"
+        >
+          <app-card [paddingStyles]="'0px'" [borderColor]="'1px solid #B1A9A9'">
+            <div
+              class="card_content"
+              [ngClass]="{ active: currentTab === card.id }"
+            >
+              <div class="card_content__logo">
+                <img [src]="card.icon" alt="" />
+              </div>
+              <div class="card_content__title">
+                <h4>{{ card.title }}</h4>
+              </div>
+            </div>
+          </app-card>
+        </div>
+      </div>
+      <div class="btn">
+        <div
+          class="dot-btn"
+          [ngClass]="{ 'btn-active': currentTab === 1 }"
+          (click)="activateBtn(1)"
+        ></div>
+        <div
+          class="dot-btn"
+          [ngClass]="{ 'btn-active': currentTab === 2 }"
+          (click)="activateBtn(2)"
+        ></div>
+        <div
+          class="dot-btn"
+          [ngClass]="{ 'btn-active': currentTab === 3 }"
+          (click)="activateBtn(3)"
+        ></div>
+      </div>
+    </div>
+  
+    <div class="first-view" *ngIf="currentTab === 1">
+      <app-accordion></app-accordion>
+      <support-footer></support-footer>
+    </div>
+  
+    <div class="email-section" *ngIf="currentTab === 2">
+      <div class="form">
+        <div class="form-group">
+          <app-select-dropdown
+            [type]="'text'"
+            [label]="'What topic can we help you with?'"
+            [size]="'large'"
+            [options]="optionsArray"
+          ></app-select-dropdown>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <app-input [type]="'text'" [label]="'First Name'"></app-input>
+          </div>
+          <div class="form-group">
+            <app-input [type]="'text'" [label]="'Last Name'"></app-input>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <app-input [type]="'text'" [label]="'Your email address'"></app-input>
+        </div>
+        <div class="form-group">
+          <app-textarea
+            [type]="'text'"
+            [label]="'Tell us more about what we can help you with'"
+            [placeholder]="'Please type here'"
+          ></app-textarea>
+        </div>
+        <div class="upload">
+          <div class="text">
+            <p>Drag and drop or <a href="#">upload a file here</a></p>
+          </div>
+        </div>
+  
+        <div class="acknowledge-section">
+          <div class="acknowledge">
+            <!-- <div class="input-box"></div> -->
+            <label nz-checkbox [ngModel]="false"
+              >By Submitting this form, I acknowledge receipt of CashToken Rewards
+              Africa</label
+            >
+            <div></div>
+          </div>
+  
+          <primary-button [text]="'send email'" [type]="'submit'"
+            >Send email</primary-button
+          >
+        </div>
+      </div>
+  
+      <app-accordion></app-accordion>
+  
+      <support-footer></support-footer>
+    </div>
+  
+    <div class="request-section" *ngIf="currentTab === 3">
+      <div class="form">
+        <div class="form-group">
+          <app-select-dropdown
+            [type]="'text'"
+            [label]="'What topic can we help you with?'"
+            [size]="'large'"
+            [options]="optionsArray"
+          ></app-select-dropdown>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <app-input [type]="'text'" [label]="'First Name'"></app-input>
+          </div>
+          <div class="form-group">
+            <app-input [type]="'text'" [label]="'Last Name'"></app-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <app-input [type]="'text'" [label]="'Your email address'"></app-input>
+          </div>
+          <div class="form-group">
+            <app-input [type]="'text'" [label]="'Your Phone Number'"></app-input>
+          </div>
+        </div>
+  
+        <div class="form-group form-group2">
+          <app-select-dropdown
+            [type]="'text'"
+            [label]="'What is the best time to call you?'"
+            [size]="'large'"
+            [options]="optionsArray"
+          ></app-select-dropdown>
+        </div>
+  
+        <div class="form-group">
+          <app-textarea
+            [type]="'text'"
+            [label]="'Tell us more about what we can help you with'"
+            [placeholder]="'Please type here'"
+          ></app-textarea>
+        </div>
+  
+        <div class="acknowledge-section">
+          <div class="acknowledge">
+            <!-- <div class="input-box"></div> -->
+            <label nz-checkbox [ngModel]="false"
+              >By Submitting this form, I acknowledge receipt of CashToken Rewards
+              Africa</label
+            >
+          </div>
+  
+          <primary-button [text]="'Call me'" [type]="'submit'"
+            >Send email</primary-button
+          >
+        </div>
+      </div>
+  
+      <app-accordion></app-accordion>
+      <support-footer></support-footer>
+    </div>
+  </div>  
+</app-page-wrap>

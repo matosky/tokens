@@ -1,0 +1,38 @@
+<header>
+  <div class="logo">
+    <img [src]="logo" alt="applogo" class="app-logo" />
+  </div>
+
+  <div class="desktop-breadcrumb">
+    <div class="breadcrumbs">
+      <h1>{{ pageTitle }}</h1>
+      <small
+        >{{ currentDate | date : "h:mm a" }}
+        {{ currentDate | date : "MMMM d, y" }}</small
+      >
+    </div>
+    <div class="header-inputs">
+      <span>Enterprise</span>
+      <app-toggle-switch></app-toggle-switch>
+      <span>Personal</span>
+      <div class="right-header-content">
+        <app-flags></app-flags>
+        <app-profile-dropdown></app-profile-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------------------Mobile Menu -->
+  <div class="mobile-menu">
+    <div class="dashboard-type">
+      <app-toggle-switch></app-toggle-switch>
+    </div>
+    <span
+      (click)="toggleMobileSidebar()"
+      class="menu-icon"
+      nz-icon
+      nzType="menu"
+      nzTheme="outline"
+    ></span>
+  </div>
+</header>

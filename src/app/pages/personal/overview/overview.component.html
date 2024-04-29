@@ -1,0 +1,310 @@
+<app-page-wrap>
+  <div class="overview-wrap">
+    <section class="account-section">
+      <!-- --------Desktop Cards------------- -->
+      <div class="cards">
+        <div
+          class="account-card"
+          *ngFor="let card of cardData; let index = index; let last = index"
+        >
+          <div class="card-top">
+            <div class="card-icon-wrap">
+              <img [src]="card.icon" [alt]="card.balanceLabel" />
+            </div>
+            <span>{{ card.balanceLabel }}</span>
+          </div>
+          <div class="card-bottom">
+            <span *ngIf="!isVisibleEye && index === 0" class="count asteriks">{{
+              calculateAsteriksLength(card.acct | currency : "₦")
+            }}</span>
+            @if (card.currency) {
+            <span *ngIf="isVisibleEye" class="count">{{
+              card.acct | currency : "₦"
+            }}</span>
+            } @else {
+            <span class="count">{{ card.acct }}</span>
+            }
+            <div class="togglers" *ngIf="index == 0">
+              <span
+                class="eyeIcon"
+                (click)="toggleWalletBallance()"
+                *ngIf="isVisibleEye"
+                nz-icon
+                nzType="eye-invisible"
+                nzTheme="outline"
+              ></span>
+              <span
+                class="eyeIcon"
+                (click)="toggleWalletBallance()"
+                *ngIf="!isVisibleEye"
+                nz-icon
+                nzType="eye"
+                nzTheme="outline"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ................User Transction info................... -->
+      <section class="tabular-section">
+        <div class="tables">
+          <div class="table-contents">
+            <h6>You Gifted</h6>
+            <app-table [tableData]="personData" [tableHeaders]="headers">
+              <tr *ngFor="let row of personData; let i = index">
+                <td [style.text-align]="'left'">{{ row.date }}</td>
+                <td [style.text-align]="'center'">{{ row.reference }}</td>
+                <td [style.text-align]="'center'">{{ row.customer }}</td>
+                <td [style.text-align]="'center'">{{ row.quantity }}</td>
+                <td
+                  [ngClass]="{
+                    success: row.status === 'Completed',
+                    pending: row.status === 'Pending',
+                    failed: row.status === 'Failed'
+                  }"
+                  [style.text-align]="'center'"
+                >
+                  {{ row.status }}
+                </td>
+                <td [style.cursor]="'pointer'">
+                  <div class="action-column">
+                    <span
+                      class="table-eye-con"
+                      (click)="showModal(row.id)"
+                      nz-icon
+                      nzType="eye"
+                      nzTheme="outline"
+                    ></span>
+                  </div>
+                </td>
+              </tr>
+            </app-table>
+          </div>
+          <div class="table-contents">
+            <h6>You Received</h6>
+            <app-table
+              [tableData]="personData"
+              [showPagination]="false"
+              [tableHeaders]="headers"
+            >
+              <tr *ngFor="let row of personData; let i = index">
+                <td [style.text-align]="'left'">{{ row.date }}</td>
+                <td [style.text-align]="'center'">{{ row.reference }}</td>
+                <td [style.text-align]="'center'">{{ row.customer }}</td>
+                <td [style.text-align]="'center'">{{ row.quantity }}</td>
+                <td
+                  [ngClass]="{
+                    success: row.status === 'Completed',
+                    pending: row.status === 'Pending',
+                    failed: row.status === 'Failed'
+                  }"
+                  [style.text-align]="'center'"
+                >
+                  {{ row.status }}
+                </td>
+                <td [style.cursor]="'pointer'">
+                  <div class="action-column">
+                    <span
+                      class="table-eye-con"
+                      (click)="showModal(row.id)"
+                      nz-icon
+                      nzType="eye"
+                      nzTheme="outline"
+                    ></span>
+                  </div>
+                </td>
+              </tr>
+            </app-table>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- right overview side -->
+    <aside class="asidebar">
+      <!-- --------Mobile Cards------------- -->
+      <div class="cards">
+        <div
+          class="account-card"
+          *ngFor="let card of mobileCardData; let index = index; let last = index"
+        >
+          <div class="card-top">
+            <div class="card-icon-wrap">
+              <img [src]="card.icon" [alt]="card.balanceLabel" />
+            </div>
+            <span>{{ card.balanceLabel }}</span>
+          </div>
+          <div class="card-bottom">
+            <span *ngIf="!isVisibleEye && index === 0" class="count asteriks">{{
+              calculateAsteriksLength(card.acct | currency : "₦")
+            }}</span>
+            @if (card.currency) {
+            <span *ngIf="isVisibleEye" class="count">{{
+              card.acct | currency : "₦"
+            }}</span>
+            } @else {
+            <span class="count">{{ card.acct }}</span>
+            }
+            <div class="togglers" *ngIf="index == 0">
+              <span
+                class="eyeIcon"
+                (click)="toggleWalletBallance()"
+                *ngIf="isVisibleEye"
+                nz-icon
+                nzType="eye-invisible"
+                nzTheme="outline"
+              ></span>
+              <span
+                class="eyeIcon"
+                (click)="toggleWalletBallance()"
+                *ngIf="!isVisibleEye"
+                nz-icon
+                nzType="eye"
+                nzTheme="outline"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="campaign-card">
+        <!-- <img [src]="campaign" alt="icon" /> -->
+        <div class="campaign-content">
+          <h5>One NaijaCashtoken=</h5>
+          <div class="first-line">
+            <span class="bold">N6</span> Instant Cashtoken + A chance to win
+          </div>
+          <span class="second-line"
+            >between <span class="bold">5K - 100M</span></span
+          >
+          <div class="campain-btn">
+            <primary-button
+              [buttonWidth]="'40'"
+              [backgroundColor]="'#04AB47'"
+              [size]="'small'"
+              [text]="'Explore'"
+            ></primary-button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ..........Activity summary section...................... -->
+      <div class="activity-contents">
+        <div class="activity-summary">
+          <div class="activity-heading">
+            <div class="heading-left">
+              <h3>Activity Summary</h3>
+            </div>
+            <div class="heading-right">
+              <app-select-dropdown
+                [size]="'small'"
+                [hasLabel]="false"
+                placeholder="Today"
+                [options]="activitySelectOptions"
+              ></app-select-dropdown>
+            </div>
+          </div>
+          <div class="activity-main-content">
+            <div class="section-wrapper">
+              <p class="heading">You Gifted</p>
+              <div class="activity-information">
+                <div class="activity-card">
+                  <div class="card-top">
+                    <img [src]="activitySummaryData[0].icon" alt="icon" />
+                  </div>
+                  <div class="card-bottom">
+                    <span class="account">{{
+                      activitySummaryData[0].acct
+                    }}</span>
+                    <span class="label">{{
+                      activitySummaryData[0].label
+                    }}</span>
+                  </div>
+                </div>
+                <div class="activity-card">
+                  <div class="card-top">
+                    <img [src]="activitySummaryData[1].icon" alt="icon" />
+                  </div>
+                  <div class="card-bottom">
+                    <span class="account">{{
+                      activitySummaryData[1].acct
+                    }}</span>
+                    <span class="label">{{
+                      activitySummaryData[1].label
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="section-wrapper">
+              <p class="heading">You Received</p>
+              <div class="activity-information">
+                <div class="activity-card">
+                  <div class="card-top">
+                    <img [src]="activitySummaryData[2].icon" alt="icon" />
+                  </div>
+                  <div class="card-bottom">
+                    <span class="account">{{
+                      activitySummaryData[2].acct
+                    }}</span>
+                    <span class="label">{{
+                      activitySummaryData[2].label
+                    }}</span>
+                  </div>
+                </div>
+                <div class="activity-card">
+                  <div class="card-top">
+                    <img [src]="activitySummaryData[3].icon" alt="icon" />
+                  </div>
+                  <div class="card-bottom">
+                    <span class="account">{{
+                      activitySummaryData[3].acct
+                    }}</span>
+                    <span class="label">{{
+                      activitySummaryData[3].label
+                    }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- performance tracker -->
+      <div class="performance-tracker">
+        <div>
+          <h3>Overrall Performance</h3>
+          <p>Customers you gifted cashtoken</p>
+        </div>
+        <div class="progress-container">
+          <nz-progress
+            nz-tooltip
+            nzType="circle"
+            [nzPercent]="65"
+            [nzSteps]="2"
+            [className]="'custom-progress'"
+            [nzStrokeWidth]="20"
+            [nzSuccessPercent]="5.86"
+            [nzStrokeLinecap]="'square'"
+            [nzStrokeColor]="'#CAAD65'"
+          >
+          </nz-progress>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <nz-modal
+    class="container"
+    [(nzVisible)]="isVisible"
+    nzTitle="User Giftings"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+  >
+    <ng-container *nzModalContent>
+      <p>Date: {{ modalData?.date }}</p>
+      <p>Customer: {{ modalData?.customer }}</p>
+      <p>Quantity: {{ modalData?.quantity }}</p>
+    </ng-container>
+  </nz-modal>
+</app-page-wrap>

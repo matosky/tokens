@@ -1,0 +1,40 @@
+@import "../../../../../styles/base/variables.less";
+@import "../../../../../styles/base/mixins.less";
+
+.flag-box {
+    position: relative;
+    margin: 0 0 0 0.5rem;
+    cursor: pointer;
+    .flex-center();
+    .flag {
+        // width: fit-content;
+        // height: fit-content;
+        position: relative;
+        width: 45px;
+        height: 25px;
+        overflow: hidden;
+        border-radius: 6px;
+        .flex-center();
+
+
+        & img{
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            border-radius: 6px;
+        }
+    }
+
+    & a{
+    .flex-center();
+    }
+  }
+
+  .dropdown{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    z-index: 1;
+  }

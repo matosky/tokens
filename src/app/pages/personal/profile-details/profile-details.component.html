@@ -1,0 +1,8 @@
+<div class="profile-details-wrap">
+    <ul *ngFor="let info of user">
+        <li>
+            <label class="block text-sm font-medium text-gray-500 mb-2">{{info.label}}</label>
+            <div class="user-detail"><h6>{{info.value}}</h6></div>
+        </li>
+    </ul>
+</div>

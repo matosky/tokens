@@ -1,0 +1,20 @@
+<div class="accordion">
+  <h2>Top FAQs</h2>
+  <nz-collapse nzAccordion>
+    @for (panel of panels; track panel) {
+    <nz-collapse-panel [nzHeader]="panel.name" [nzActive]="panel.active">
+      <p>{{ panel.content }}</p>
+    </nz-collapse-panel>
+    }
+  </nz-collapse>
+</div>
+
+<!-- <nz-collapse nzAccordion>
+  <nz-collapse-panel
+    *ngFor="let panel of panels"
+    [nzHeader]="panel.name"
+    [nzActive]="panel.active"
+  >
+    <p>{{ panel.content }}</p>
+  </nz-collapse-panel>
+</nz-collapse> -->

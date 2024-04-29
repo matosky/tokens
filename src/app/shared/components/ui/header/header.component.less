@@ -1,0 +1,81 @@
+@import "../../../../../styles/base/variables.less";
+@import "../../../../../styles/base/mixins.less";
+
+header {
+  padding: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: @large-screen) {
+    border-bottom: 1px solid #faf3f3;
+    background-color: @color-light;
+  }
+}
+
+.logo {
+  display: none;
+  .app-logo {
+    
+  }
+  @media screen and (max-width: @medium-screen) {
+    display: block;
+  }
+}
+
+.desktop-breadcrumb {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: @medium-screen) {
+    display: none;
+  }
+}
+
+.breadcrumbs {
+  font-size: 14px;
+  & h1 {
+    .Page-Title();
+  }
+  small {
+    margin-top: 8px;
+    display: block;
+    color: @color-text-secondary;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 16px;
+    letter-spacing: -0.6px;
+  }
+}
+
+.header-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  span{
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: -0.12px;
+    color: #1E1D1E;
+  }
+
+  .right-header-content {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+}
+
+.mobile-menu {
+  .flex-center();
+  display: none;
+  @media screen and (max-width: @medium-screen) {
+    display: flex;
+  }
+  .menu-icon {
+    font-size: 2rem;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+  }
+}

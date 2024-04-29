@@ -1,0 +1,286 @@
+@import "../../../../styles/base/mixins.less";
+@import "../../../../styles/base/variables.less";
+
+.overview-wrap {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  background-color: @color-app-layout-primary;
+  @media screen and (max-width: @large-screen) {
+    grid-template-columns: 1fr;
+  }
+ 
+}
+
+.account-section {
+  flex: 2;
+  .flex-center(column,space-between,center);
+  gap: 10px;
+  @media screen and (max-width: @medium-screen) {
+    height: fit-content;
+  }
+  & .cards {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    @media screen and (max-width: @large-screen) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .account-card {
+      flex: 1;
+      gap: 5px;
+      height: 139px;
+      .left {
+        width: fit-content;
+        .flex-center(column,flex-start,flex-start);
+        gap: 5px;
+
+        & h4 {
+          .Large-card-title();
+          color: @color-text-primary;
+        }
+        & h6 {
+          .Large-card-subtitle();
+        }
+        & img {
+          margin-bottom: 10px;
+        }
+      }
+    }
+    // <------- mobile card ------>
+    .mobile-card {
+      flex: 1;
+      gap: 5px;
+      display: none;
+      @media screen and (max-width: @large-screen) {
+        display: block;
+      }
+
+      .amount-card-content {
+        .flex-center(row,space-between,center);
+        .left {
+          width: fit-content;
+          .flex-center(column,flex-start,flex-start);
+          // gap: 5px;
+
+          & h4 {
+            .Large-card-title();
+            color: @color-text-primary;
+          }
+          & h6 {
+            .Large-card-subtitle();
+          }
+          & img {
+            margin-bottom: 10px;
+          }
+        }
+        .right-circle {
+          width: 60px;
+          height: 60px;
+          .flex-center();
+          border-radius: 50%;
+          font-family: "Roboto", sans-serif;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px; 
+          background-color: @color-app-layout-primary;
+          letter-spacing: 0.5px;
+          margin-right: 60px;
+          margin-bottom: -20px;
+          border: 8px solid @color-brand-gold;
+          @media screen and (max-width: @medium-screen) {
+            width: 45px;
+            height: 45px;
+            font-size: 12px;
+            margin-bottom: 0px;
+            border: 4px solid @color-brand-gold;
+          }
+          @media screen and (max-width: @small-screen) {
+            margin-right: 0px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tabular-section {
+  width: 100%;
+  margin-top: 10px;
+  @media screen and (max-width: @medium-screen) {
+    display: none;
+  }
+  .tables {
+    width: 100%;
+    .flex-center(column,flex-start,flex-start);
+    gap: 10px;
+    .table-contents {
+      width: 100%;
+      max-width: 100%;
+      height: 400px;
+      border-radius: 30px;
+      border: 1px solid @color-app-border;
+      padding: 20px 10px 10px 10px;
+      background-color: #FFFFFF;
+
+      & h6{
+        .Title-Text();
+      }
+    }
+
+    .table-contents:last-child{
+      margin-top: 10px;
+    }
+  }
+
+  .action-column{
+    width: 100%;
+   .flex-center(row, center, center);
+ }
+ 
+}
+
+.asidebar {
+  flex: 1;
+  max-width: 100%;
+  .flex-center(column,space-between,center);
+  gap: 10px;
+  .total-withdrawn-card {
+    width: 100%;
+    height: 139px;
+    gap: 5px;
+    @media screen and (max-width: @large-screen) {
+      display: none;
+    }
+    .amount-card-content {
+      .flex-center(row,space-between,center);
+      .left {
+        width: fit-content;
+        .flex-center(column,flex-start,flex-start);
+        & h4 {
+          .Large-card-title();
+          color: @color-text-primary;
+        }
+        & h6 {
+          .Large-card-subtitle();
+        }
+        & img {
+          margin-bottom: 10px;
+        }
+      }
+      .right-circle {
+        width: 60px;
+        height: 60px;
+        .flex-center();
+        border-radius: 50%;
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; 
+        background-color: @color-app-layout-primary;
+        letter-spacing: 0.5px;
+        margin-right: 60px;
+        margin-bottom: -20px;
+        border: 8px solid @color-brand-gold;
+        @media screen and (max-width: @medium-screen) {
+          width: 45px;
+          height: 45px;
+          font-size: 12px;
+          margin-bottom: 0px;
+          border: 4px solid @color-brand-gold;
+        }
+        @media screen and (max-width: @small-screen) {
+          margin-right: 0px;
+        }
+      }
+    }
+  }
+
+  .activity-contents {
+    width: 100%;
+    padding: 10px;
+    height: 400px;
+    border-radius: 10px;
+    background-color: #FFF;
+    border: 1px solid @color-app-border;
+    .activity-heading {
+      width: 100%;
+      .flex-center(row, space-between,center);
+      .heading-left {
+        .flex-center(row, center,center);
+        gap: 5px;
+      }
+    }
+
+    .activity-main-content {
+      .section-wrapper {
+        margin: 10px 0;
+      }
+      .activity-information {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+
+        .activity-info-card-content {
+          & h4{
+            .Small-card-text();
+          }
+        
+          .main {
+            width: 100%;
+            margin-bottom: 10px;
+            .flex-center(row, space-between,center);
+          }
+          .right-circle {
+            width: 60px;
+            height: 60px;
+            .flex-center();
+            border-radius: 50%;
+            font-size: 6px;
+            padding: 0.2rem;
+            @media screen and (max-width: @medium-screen) {
+              width: 60px;
+              height: 60px;
+              font-size: 8px;
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  // ...............Performance-tracker.........
+  .performance-tracker {
+    width: 100%;
+    height: 398px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    .flex-center(column, center,center);
+    border: 1px solid @color-app-border;
+    @media screen and (max-width: @medium-screen){
+      display: none;
+    }
+    & div{
+      margin-top: 10px;
+      text-align: center;
+
+      & h3{
+        .Title-Text();
+      }
+
+      & p{
+        .paragraph-text();
+      }
+    }
+    & img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+}

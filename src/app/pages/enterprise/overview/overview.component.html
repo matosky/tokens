@@ -1,0 +1,78 @@
+<div class="overview-wrap">
+  <section class="account-section">
+    <div class="cards">
+      <div class="account-card" *ngFor="let card of cardData; let last = index">
+        <app-card [borderColor]="'1px solid #B1A9A9'">
+          <div class="amount-card-content">
+            <div class="left">
+              <img [src]="card.icon" [alt]="card.balanceLabel" />
+              <div>
+                @if (card.currency) {
+                <h4>{{ card.acct | currency : "₦" }}</h4>
+                } @else {
+                <h4>{{ card.acct }}</h4>
+                }
+                <h6>{{ card.balanceLabel }}</h6>
+              </div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+      <div class="mobile-card">
+        <app-card [borderColor]="'1px solid #B1A9A9'">
+          <div class="amount-card-content">
+            <div class="left">
+              <img [src]="totalWidth.icon" [alt]="totalWidth.balanceLabel" />
+              @if (totalWidth.currency) {
+              <h4>{{ totalWidth.acct | currency : "₦" }}</h4>
+              } @else {
+              <h4>{{ totalWidth.acct }}</h4>
+              }
+
+              <h6>{{ totalWidth.balanceLabel }}</h6>
+            </div>
+            <div class="right-circle">
+              <span>46%</span>
+            </div>
+          </div>
+        </app-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- right overview side -->
+  <aside class="asidebar">
+    <div class="total-withdrawn-card">
+      <app-card [borderColor]="'1px solid #B1A9A9'">
+        <div class="amount-card-content">
+          <div class="left">
+            <img [src]="totalWidth.icon" [alt]="totalWidth.balanceLabel" />
+            @if (totalWidth.currency) {
+            <h4>{{ totalWidth.acct | currency : "₦" }}</h4>
+            } @else {
+            <h4>{{ totalWidth.acct }}</h4>
+            }
+
+            <h6>{{ totalWidth.balanceLabel }}</h6>
+          </div>
+          <div class="right-circle">
+            <span>46%</span>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </aside>
+</div>
+<nz-modal
+  class="container"
+  [(nzVisible)]="isVisible"
+  nzTitle="User Giftings"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <p>Date: {{ modalData?.date }}</p>
+    <p>Customer: {{ modalData?.customer }}</p>
+    <p>Quantity: {{ modalData?.quantity }}</p>
+  </ng-container>
+</nz-modal>

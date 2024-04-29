@@ -1,0 +1,136 @@
+<form [formGroup]="Form">
+  <div class="wrapper">
+    <!-------------- Current Phone Number Stage ------------->
+    <div *ngIf="isEditMode" class="current-phone-number">
+      <div class="content">
+        <img src="../../../../assets/svg/ad_units.svg" alt="" />
+        <h2>Current Phone Number</h2>
+        <p>
+          This is the phone number currently associated to your profile. You can
+          change it by clicking on the button below
+        </p>
+        <div class="inputs-wrap">
+          <div class="code-input">
+            <app-select-dropdown
+              [size]="'large'"
+              [placeholder]="defaultCode"
+              [isCountryOptions]="true"
+              [options]="countryCodes"
+              [disabled]="true"
+            ></app-select-dropdown>
+          </div>
+          <div class="number-input">
+            <app-input
+              formControlName="currentNumber"
+              [defaultValue]="'08160835244'"
+              [type]="'text'"
+              [placeholder]="''"
+              [readOnlyMode]="true"
+            ></app-input>
+          </div>
+        </div>
+      </div>
+      <div class="button-wrap">
+        <primary-button
+          text="Edit Phone Number"
+          (click)="editPhoneNumber()"
+        ></primary-button>
+      </div>
+    </div>
+
+    <!------------------New Phone Number stage  ----------->
+    <div *ngIf="isVerificationMode" class="new-phone-number">
+      <div class="current-phone-number">
+        <div class="content">
+          <img src="../../../../assets/svg/ad_units.svg" alt="" />
+          <h2>New Phone Number</h2>
+          <p>
+            A verification code will be sent in order to verify ownership of the
+            new phone number.
+          </p>
+          <div class="inputs-wrap">
+            <div class="code-input">
+              <app-select-dropdown
+                [size]="'large'"
+                [placeholder]="defaultCode"
+                [isCountryOptions]="true"
+                [options]="countryCodes"
+              ></app-select-dropdown>
+            </div>
+            <div class="number-input">
+              <app-input 
+              formControlName="newNumber"
+              [type]="'text'" [placeholder]="''"></app-input>
+            </div>
+          </div>
+        </div>
+        <div class="button-wrap">
+          <primary-button
+            text="Verify"
+            (click)="verifyPhoneNumber()"
+          ></primary-button>
+        </div>
+      </div>
+    </div>
+    <!------------------OTP Verification  stage  ----------->
+    <div *ngIf="isOtpMode" class="otp">
+      <div class="otp">
+        <div class="otp-number">
+          <div class="otp-content">
+            <h2>Verification Code</h2>
+            <p>
+              Insert the verification code sent via SMS. We sent a verification
+              code to: +234 906 395 8938
+            </p>
+            <div class="otp-inputs-wrap">
+              <div class="number-input">
+                <ng-otp-input
+                  #ngOtpInput
+                  [config]="{ length: 5 }"
+                ></ng-otp-input>
+              </div>
+            </div>
+          </div>
+          <div class="button-wrap">
+            <primary-button text="Submit" (click)="onSubmit()"></primary-button>
+          </div>
+          <div class="resend-otp">
+            <p>Resend new verification code in <span>29 seconds</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+
+
+<nz-modal
+[nzVisible]="isVisible"
+[nzZIndex]="1000"
+[nzCentered]="true"
+[nzFooter]="null"
+[nzClosable]="false"
+(nzOnCancel)="handleCancel()"
+>
+<ng-container *nzModalContent>
+  <div class="modal-wrapper">
+    <div class="modal-icon">
+      <img src="../../../../assets/svg/check_circle.svg" alt="" />
+    </div>
+
+    <div class="modal-title">
+      {{ modalTitle }}
+    </div>
+
+    <div class="modal-btn">
+      <primary-button
+        [text]="'Ok'"
+        [type]="'button'"
+        (click)="handleCancel()"
+      ></primary-button>
+    </div>
+  </div>
+</ng-container>
+</nz-modal>

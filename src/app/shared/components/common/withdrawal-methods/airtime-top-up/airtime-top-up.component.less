@@ -1,0 +1,34 @@
+@import "../../../../../styles/base/variables.less";
+@import "../../../../../styles/base/mixins.less";
+
+.field-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.modal-button-wrap {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-text-wrap {
+  .flex-center(row, space-between, center);
+  margin-bottom: 10px;
+
+  & h6 {
+    .modaltext();
+  }
+  & p {
+    .modalSubtext();
+  }
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}

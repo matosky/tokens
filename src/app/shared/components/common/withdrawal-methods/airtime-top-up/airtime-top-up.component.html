@@ -1,0 +1,44 @@
+<form class="field-wrap" [formGroup]="withdrawalForm">
+  <div *ngIf="currentStep === 1" class="field-wrap">
+    <app-input
+      formControlName="mobileNumber"
+      [type]="'number'"
+      [label]="'Mobile Number'"
+    ></app-input>
+    <div *ngIf="mobileNumberError">
+      <p class="error-message">Number is required</p>
+    </div>
+    <app-select-dropdown
+      [label]="'Network'"
+      formControlName="network"
+      [size]="'large'"
+      [options]="networktions"
+    ></app-select-dropdown>
+    <div *ngIf="networkError">
+      <p class="error-message">Network is required</p>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep === 2">
+    <div *ngFor="let info of confirmWithdrawData">
+      <div class="info-text-wrap">
+        <h6>{{ info.title }}</h6>
+        <p>{{ info.info }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="number-input" *ngIf="currentStep === 3">
+    <ng-otp-input #ngOtpInput [config]="{ length: 5 }"></ng-otp-input>
+  </div>
+
+  <div class="modal-button-wrap">
+    <primary-button
+      (clickEvent)="onNextClick()"
+      [text]="'Next'"
+      [type]="'button'"
+      [width]="'200px'"
+      [margin]="'0 auto'"
+    ></primary-button>
+  </div>
+</form>

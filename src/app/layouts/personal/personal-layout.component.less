@@ -1,0 +1,52 @@
+@import "../../../styles/base/mixins.less";
+@import "../../../styles/base/variables.less";
+.layout {
+  min-height: 100vh;
+  background-color: @color-app-layout-primary;
+}
+
+.app-header{
+  padding: 0px 16px;
+  @media screen and (max-width: @medium-screen) {
+    width: 100%;
+    background-color: @color-light;
+  }
+}
+
+.right-layout {
+  margin-left: 256px;
+  max-width: 1400px;
+  background-color: @color-app-layout-primary;
+  @media screen and (max-width: @medium-screen) {
+    margin-left: 0px;
+  }
+
+}
+
+nz-content {
+  overflow: initial;
+  overflow: hidden;
+}
+
+
+.breadcrumbs {
+  padding: 20px 16px 0px 16px;
+  font-size: 14px;
+  display: none;
+  @media screen and (max-width: @medium-screen) {
+    display: block;
+  }
+  & h1 {
+    .Page-Title();
+  }
+  small {
+    margin-top: 8px;
+    display: block;
+    color: @color-text-secondary;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 16px;
+    letter-spacing: -0.6px;
+  }
+}

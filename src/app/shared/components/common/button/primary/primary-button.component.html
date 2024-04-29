@@ -1,0 +1,15 @@
+<button
+  [style.width]="width ? width : 'auto'"
+  [style.height]="height ? height : 'auto'"
+  [style.padding]="padding ? padding : '8px 20px'"
+  [style.margin]="margin ? margin : 'auto'"
+  [style.color]="color ? color : '#25282b'"
+  [style.backgroundColor]="
+    contained ? 'transparent' : background ? background : '#CAAD65'
+  "
+  [style.borderRadius]="radius ? radius : '10px'"
+  [disabled]="disabled"
+  (click)="handleClick()"
+>
+  {{ text }}
+</button>

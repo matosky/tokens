@@ -1,0 +1,23 @@
+<!-- table.component.html -->
+<div>
+  <nz-table
+    [nzPageIndex]="currentPage"
+    [nzPageSize]="pageSize"
+    [nzData]="tableData"
+    [nzLoading]="loading"
+    nzShowPagination="false"
+    #basicTable
+  >
+    <thead>
+      <tr>
+        <th *ngFor="let header of tableHeaders.headers">
+          {{ header.header }}
+        </th>
+        <th>More</th>
+      </tr>
+    </thead>
+    <tbody [style.background-color]="bodyBackground">
+      <ng-content></ng-content>
+    </tbody>
+  </nz-table>
+</div>

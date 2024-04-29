@@ -1,0 +1,85 @@
+<app-page-wrap [customStyles]="{ padding: '0px' }">
+  <section class="referral">
+    <div class="left-referral">
+      <h2 class="title">Refer and Earn</h2>
+      <p class="desc">
+        Refer friends, family or businesses to CashToken and earn commission
+        perpetually on all their CashToken purchases and wins.
+      </p>
+      <div class="referral-link">
+        <div class="link">
+          <input
+            [(ngModel)]="inputValue"
+            class="mt-1 p-2"
+            placeholder="https://platform.cashtokenreward.com/r/DAVE"
+          />
+
+          <div class="link-btn mt-1">
+            <button (click)="copyToClipboard()">
+              <img src="../../../../assets/svg/link-icon.svg" alt="" />
+            </button>
+          </div>
+        </div>
+        <div *ngIf="showSuccessMessage" class="success-message">
+          Copied to clipboard
+        </div>
+      </div>
+      <p class="tap-code">Tap the button above to copy the code</p>
+    </div>
+    <div class="right-referral">
+      <img src="../../../../assets/svg/referral.svg" alt="" class="img-layer" />
+    </div>
+  </section>
+
+  <!-- --Steps-- -->
+  <section class="steps">
+    <ul *ngFor="let step of steps">
+      <li>
+        <div class="img">
+          <img src="{{ step.image }}" alt="" />
+        </div>
+        <div class="title">{{ step.title }}</div>
+        <div class="content">
+          <p>
+            {{ step.description }}
+          </p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- --newsletter-- -->
+  <section class="news">
+    <div class="newsletter">
+      <h2>Stay updated with CashToken by signing up for our newsletter</h2>
+      <div class="news-input">
+        <div class="input"><app-input></app-input></div>
+        <div class="btn">
+          <primary-button
+            [text]="'Subscribe'"
+            [type]="'submit'"
+          ></primary-button>
+        </div>
+      </div>
+    </div>
+    <div class="social">
+      <h3 class="title">Share on social Network</h3>
+      <div class="socials">
+        <div class="icon" *ngFor="let icon of icons">
+          <a href="{{ icon.link }}" target="_blank"
+            ><img src="{{ icon.icon }}" alt=""
+          /></a>
+          <span>{{ icon.title }}</span>
+        </div>
+        <div class="icon">
+          <div class="more">
+            <div class="list"></div>
+            <div class="list"></div>
+            <div class="list"></div>
+          </div>
+          <span style="margin-top: 22px">More</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</app-page-wrap>

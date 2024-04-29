@@ -1,0 +1,11 @@
+<div class="countries-wrap">
+    <ul *ngFor="let c of countries; let i=index">
+        <li (click)="selectCountry(i,c.image)" [class.active]="selectedCountryIndex === i">
+            <div class="country">
+                <img [src]="c.image" alt="flag" />
+                <div class="country-name">{{c.name}}</div>
+            </div>
+            <span class="check-icon" nz-icon nzType="check" nzTheme="outline" *ngIf="selectedCountryIndex === i"></span>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,22 @@
+<div class="drop-down-wrap">
+  <a nz-dropdown  [nzClickHide]="true" [nzDropdownMenu]="menu">
+    <div class="profile">
+      <img [src]="userIcon" alt="userIcon" class="user-icon" />
+      <img [src]="dropdownIcon" alt="dropIcon" class="drop-icon" />
+    </div>
+  </a>
+  <nz-dropdown-menu class="dropdown" #menu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li>
+        <a class="item" routerLink="settings">
+          <span nz-icon nzType="user" nzTheme="outline"></span>
+          Profile
+        </a>
+      </li>
+      <li (click)="logOut()" class="item">
+          <span nz-icon nzType="logout" nzTheme="outline"></span>
+          Sign out
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+</div>

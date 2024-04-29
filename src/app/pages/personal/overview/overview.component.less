@@ -1,0 +1,431 @@
+@import "../../../../styles/base/mixins.less";
+@import "../../../../styles/base/variables.less";
+
+.overview-wrap {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  background-color: @color-app-layout-primary;
+  @media screen and (max-width: @large-screen) {
+    grid-template-columns: 1fr;
+  }
+
+  & .eyeIcon {
+    cursor: pointer;
+    // display: block;
+    color: @color-brand-gold;
+    font-size: 1.5rem;
+    // margin-left: 20px;
+  }
+
+  & .table-eye-con {
+    cursor: pointer;
+    display: block;
+    color: @color-brand-gold;
+    font-size: 1.5rem;
+  }
+}
+
+.account-section {
+  flex: 2;
+  .flex-center(column,row,center);
+  row-gap: 32px;
+  @media screen and (max-width: @medium-screen) {
+    height: fit-content;
+  }
+  & .cards {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    @media screen and (max-width: @large-screen) {
+      display: none;
+    }
+    .account-card {
+      flex: 1;
+      gap: 16px;
+      height: 120px;
+      background-color: @color-light;
+      box-shadow: @app-drop-shadow;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: 8px;
+      padding: 15px 0 20px 15px;
+      .card-top {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        span {
+          .Large-card-subtitle();
+        }
+
+        .card-icon-wrap {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+        }
+      }
+
+      .card-bottom {
+        display: flex;
+        padding: 2px;
+        column-gap: 5px;
+        .count {
+          display: block;
+          .Large-card-title();
+        }
+
+        .asteriks {
+          display: block;
+        }
+      }
+
+
+      &:nth-child(1) .card-icon-wrap {
+        background: rgba(0, 88, 219, 0.1);
+      }
+      &:nth-child(2) .card-icon-wrap {
+        background-color: rgba(4, 171, 71, 0.1);
+      }
+      &:nth-child(3) .card-icon-wrap {
+        background-color: rgba(255, 103, 77, 0.1);
+      }
+    }
+    // <------- mobile card ------>
+    .mobile-card {
+      flex: 1;
+      gap: 5px;
+      display: none;
+      @media screen and (max-width: @large-screen) {
+        display: block;
+      }
+    }
+  }
+}
+
+.tabular-section {
+  width: 100%;
+  @media screen and (max-width: @medium-screen) {
+    display: none;
+  }
+  .tables {
+    width: 100%;
+    .flex-center(column,flex-start,flex-start);
+    gap: 10px;
+    .table-contents {
+      width: 100%;
+      max-width: 100%;
+      height: 400px;
+      border-radius: 8px;
+      box-shadow: @app-drop-shadow;
+      padding: 0px 20px 10px 20px;
+      background-color: @color-light;
+
+      & h6 {
+        .Title-Text();
+        margin: 16px 0;
+      }
+    }
+
+    .table-contents:last-child {
+      margin-top: 10px;
+    }
+  }
+
+  .action-column {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    & span {
+      display: block;
+    }
+  }
+}
+
+.asidebar {
+  flex: 1;
+  max-width: 100%;
+  position: relative;
+  .flex-center(column,space-between,center);
+  row-gap: 20px;
+  .campaign-card {
+    width: 100%;
+    height: 150px;
+    border-radius: 8px;
+    display: flex;
+    padding-left: 15px;
+    align-items: center;
+    background-image: url(../../../../assets/campaign_new.png);
+    // @media screen and (max-width: @large-screen) {
+    //   display: none;
+    // }
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+
+    .campaign-content {
+      max-width: 150px;
+      .first-line {
+        font-size: 0.6rem;
+        letter-spacing: -0.2px;
+        white-space: nowrap;
+        line-height: 4px;
+        font-weight: 500;
+        margin-top: 5px;
+        text-transform: capitalize;
+      }
+      .second-line {
+        font-size: 0.6rem;
+        letter-spacing: -0.2px;
+        line-height: 4px;
+        margin-top: 5px;
+        white-space: nowrap;
+        text-transform: capitalize;
+        font-weight: 500;
+      }
+      .bold {
+        font-weight: 800;
+      }
+      h5 {
+        color: #04ab47;
+        font-weight: 800;
+        letter-spacing: 1.2px;
+        text-transform: capitalize;
+        white-space: nowrap;
+      }
+
+      .campain-btn {
+        margin-top: 20px;
+        width: 120px;
+        & button {
+          font-size: 0.6rem !important;
+        }
+      }
+    }
+
+    & img {
+      height: 100%;
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+
+  // Mobile cards
+  & .cards {
+    width: 100%;
+    display: none;
+    @media screen and (max-width: @large-screen) {
+      grid-template-columns: 1fr 1fr;
+      display: grid;
+      gap: 10px;
+      row-gap: 16px;
+    }
+    .account-card {
+      gap: 16px;
+      height: 120px;
+      background-color: @color-light;
+      box-shadow: @app-drop-shadow;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-radius: 8px;
+      padding: 15px 0 16px 15px;
+      // justify-content: space-between;
+      @media screen and (max-width: @small-screen) {
+        padding: 15px 0 16px 15px;
+      }
+      .card-top {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        span {
+          .Large-card-subtitle();
+        }
+
+        .card-icon-wrap {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+        }
+      }
+
+      .card-bottom {
+        display: flex;
+        align-items: center;
+        padding: 2px;
+        column-gap: 5px;
+        .count {
+          display: block;
+          .Large-card-title();
+        }
+      }
+
+      &:nth-child(1) .card-icon-wrap {
+        background: rgba(0, 88, 219, 0.1);
+      }
+      &:nth-child(2) .card-icon-wrap {
+        background-color: rgba(255, 103, 77, 0.1);
+      }
+      &:nth-child(3) .card-icon-wrap {
+        background-color: rgba(4, 171, 71, 0.1);
+      }
+    }
+
+    .account-card:first-child {
+      grid-column: span 2;
+    }
+
+    .account-card:nth-child(n + 2) {
+      grid-column: span 1;
+    }
+  }
+
+  .activity-contents {
+    width: 100%;
+    padding: 16px 20px;
+    height: 405px;
+    border-radius: 8px;
+    box-shadow: @app-drop-shadow;
+    background-color: #fff;
+    .activity-heading {
+      width: 100%;
+      .flex-center(row, space-between,center);
+      .heading-left {
+        .flex-center(row, center,center);
+        h3 {
+          font-weight: 400;
+          font-size: 1rem;
+          text-transform: capitalize;
+          letter-spacing: 0.15px;
+          color: @color-title;
+          line-height: 24px;
+        }
+      }
+    }
+
+    .activity-main-content {
+      .section-wrapper {
+        margin-bottom: 10px;
+        margin-top: 13px;
+        .heading {
+          margin-bottom: 8px;
+          font-weight: 400;
+          font-size: 1rem;
+        }
+      }
+      .activity-information {
+        display: flex;
+        column-gap: 10px;
+        .activity-card {
+          flex: 1;
+          height: 120px;
+          border-radius: 8px;
+          display: flex;
+          flex-direction: column;
+          padding: 10px 10px;
+          align-items: flex-start;
+          justify-content: center;
+          border: 1px solid #e8e8e8;
+          background-color: @color-light;
+          span {
+            display: block;
+          }
+
+          .card-top {
+            width: fit-content;
+            height: fit-content;
+            padding: 10px;
+            border-radius: 50%;
+            background: rgba(58, 28, 31,0.1);
+          }
+
+          .card-bottom {
+            margin-top: 10px;
+            .account {
+              font-size: 1rem;
+              font-weight: 300;
+            }
+
+            .label {
+              margin-top: 2px;
+              font-size: 0.8rem;
+              font-weight: 200;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ...............Performance-tracker.........
+  .performance-tracker {
+    width: 100%;
+    height: 398px;
+    border-radius: 8px;
+    border: 1px solid @color-light;
+    box-shadow: @app-drop-shadow;
+    background-color: @color-light;
+    .flex-center(column, center,center);
+    // @media screen and (max-width: @medium-screen) {
+    //   display: none;
+    // }
+    & h3 {
+      .Title-Text();
+      text-align: center;
+    }
+
+    & p {
+      .paragraph-text();
+      text-align: center;
+    }
+    .progress-container {
+      margin-top: 40px;
+      background-color: #ffffff;
+      .flex-center(column, center,center);
+      width: 200px;
+      height: 200px;
+      padding: 20px;
+      text-align: center;
+      border-radius: 50%;
+      box-shadow: 0 0 30px #f1effb;
+      // box-shadow: 10px 0 0 10px rgb(241, 239, 251), 0 0 0 10px rgb(255, 255, 255);
+    }
+
+    & img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+}
+
+.status {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.success {
+  color: @color-success !important;
+  text-transform: capitalize;
+}
+
+.pending {
+  color: #f9c81b !important;
+  text-transform: capitalize;
+}
+
+.failed {
+  color: @color-error !important;
+  text-transform: capitalize;
+}

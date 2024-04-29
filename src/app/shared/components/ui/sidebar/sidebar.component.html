@@ -1,0 +1,57 @@
+<nz-sider [nzWidth]="'256px'">
+  <div class="logo">
+    <img [src]="logo" alt="applogo" class="app-logo" />
+  </div>
+  <a class="dashboard" routerLink="{{viewText === 'Enterprise Dashboard' ? '/overview-ent': '/'}}">
+    <span>
+      <app-dash-icon></app-dash-icon>
+      {{viewText}}
+    </span>
+  </a>
+  <div *ngFor="let section of menuData" class="sidebar-section">
+    <h3>{{ section.title }}</h3>
+    <div>
+      <li *ngFor="let item of section.items">
+        <a
+          [class.active]="isActive(item.text)"
+          (click)="setActiveItem(item.text)"
+          class="item"
+          routerLink="{{ item.route }}"
+        >
+          <!-- Use ngIf to check if item.icon is empty or not -->
+          <ng-container *ngIf="item.icon !== ''; else emptyIcon">
+            <app-overview-icon
+              *ngIf="item.icon === 'overview'"
+            ></app-overview-icon>
+            <app-wallet-icon *ngIf="item.icon === 'wallet'"></app-wallet-icon>
+            <app-cashtoken-icon
+              *ngIf="item.icon === 'cashtoken'"
+            ></app-cashtoken-icon>
+            <app-gift-icon *ngIf="item.icon === 'logs'"></app-gift-icon>
+            <app-win-icon *ngIf="item.icon === 'win'"></app-win-icon>
+            <app-point-icon *ngIf="item.icon === 'points'"></app-point-icon>
+            <!-- <app-referal-icon
+              *ngIf="item.icon === 'featured'"
+            ></app-referal-icon>
+            <app-wallet-icon *ngIf="item.icon === 'others'"></app-wallet-icon> -->
+            <app-settings-icon
+              *ngIf="item.icon === 'settings'"
+            ></app-settings-icon>
+            <app-support-icon
+              *ngIf="item.icon === 'support'"
+            ></app-support-icon>
+            <app-referal-icon *ngIf="item.icon === 'refer'"></app-referal-icon>
+          </ng-container>
+          <!-- Define the content for the case when item.icon is empty -->
+          <ng-template #emptyIcon> </ng-template>
+          <!-- Route text -->
+          <span>{{ item.text }}</span>
+        </a>
+      </li>
+    </div>
+  </div>
+  <div class="logout">
+    <img [src]="logout" alt="logout" />
+    <span>Logout</span>
+  </div>
+</nz-sider>

@@ -1,0 +1,47 @@
+@import "../../../../../styles/base/variables.less";
+@import "../../../../../styles/base/mixins.less";
+.custom-collapse *:focus {
+  height: 100%;
+}
+.collapse-header {
+  outline: none;
+  background-color: rgb(235, 234, 234);
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5715;
+  color: #25282b;
+}
+
+.collapse-content {
+  margin-top: 10px;
+  padding: 12px 16px;
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    a {
+      color: @color-text-link;
+      outline: none;
+      .App-link();
+      &:hover {
+        color: @color-brand-gold;
+      }
+    }
+  }
+}
+
+.expanded .collapse-content {
+}
+
+.countryLink{
+  cursor: pointer;
+}

@@ -1,0 +1,36 @@
+<app-page-wrap>
+  <div class="settings-layout">
+    <div
+      class="nav"
+      [class.hide]="isNavHideMode === true"
+      [class.show]="isNavHideMode === false"
+    >
+      <app-custom-collapse
+        (navLinkClicked)="onNavLinkClick($event)"
+      ></app-custom-collapse>
+    </div>
+    <div
+      class="route"
+      [class.hide]="isRouteHideMode===true"
+      [class.show]="isNavHideMode===true"
+    >
+      <div class="back-icon">
+         <div class="icon-wrap">
+          <span
+          class="icon"
+          (click)="toggleIsNavHideMode()"
+          nz-icon
+          nzType="arrow-left"
+          nzTheme="outline"
+        ></span>
+        <span>Profile details</span>
+         </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+
+    <div *ngIf="isCountryModal===true"  class="countries-modal">
+       <app-country-list (countryClicked)="toggleIsCountryModal()"></app-country-list>
+    </div>
+  </div>
+</app-page-wrap>
