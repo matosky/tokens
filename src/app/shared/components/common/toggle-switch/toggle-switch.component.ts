@@ -17,7 +17,7 @@ export class ToggleSwitchComponent implements OnInit {
     this.currentView = value;
     this.store.dispatch(new ToggleView(this.currentView));
     localStorage.setItem("toggleView", JSON.stringify(this.currentView))
-    const redirectUrl = value ? '' : '/overview-ent';
+    const redirectUrl = value ? '' : '/';
     this.router.navigate([redirectUrl]);
   }
 
@@ -25,6 +25,7 @@ export class ToggleSwitchComponent implements OnInit {
     const currentView = JSON.parse(localStorage.getItem("toggleView"));
     if(currentView){
       this.currentView = currentView;
+      console.log("currentve", this.currentView)
       this.store.dispatch(new ToggleView(this.currentView));
     }
   }

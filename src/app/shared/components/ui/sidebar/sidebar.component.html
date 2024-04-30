@@ -2,7 +2,7 @@
   <div class="logo">
     <img [src]="logo" alt="applogo" class="app-logo" />
   </div>
-  <a class="dashboard" routerLink="{{viewText === 'Enterprise Dashboard' ? '/overview-ent': '/'}}">
+  <a class="dashboard" routerLink="{{viewText === 'Enterprise' ? '/overview-ent': '/'}}">
     <span>
       <app-dash-icon></app-dash-icon>
       {{viewText}}

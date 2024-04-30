@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
           ? this.enterpriseViewSidebarItem
           : this.personalViewSidebarItem;
       this.viewText =
-        data === false ? 'Enterprise Dashboard' : 'Dashboard';
+        data === false ? 'Enterprise' : 'Dashboard';
     });
   }
 
