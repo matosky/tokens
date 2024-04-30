@@ -26,8 +26,8 @@ export class SidebarComponent implements OnInit {
     this.store.select(getView).subscribe((data: boolean) => {
       this.menuData =
         data === false
-          ? this.enterpriseViewSidebarItem
-          : this.personalViewSidebarItem;
+          ? this.personalViewSidebarItem
+          : this.enterpriseViewSidebarItem;
       this.viewText =
         data === true ? 'Enterprise' : 'Dashboard';
     });
